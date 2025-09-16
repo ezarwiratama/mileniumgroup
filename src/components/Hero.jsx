@@ -12,8 +12,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/50"></div>
 
       {/* Konten */}
-      <div className="relative z-10 text-white max-w-2xl px-6">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+      <div className="relative z-10 text-white max-w-3xl px-6">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
           PT. Milenium Jaya Sejati
         </h1>
         <p className="text-lg md:text-xl mb-6">
