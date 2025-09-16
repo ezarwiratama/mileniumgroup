@@ -80,7 +80,7 @@ export default function Tentang() {
       </div>
 
       {/* 3 Button Bawah */}
-      <div className="mt-16 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div className="mt-16 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-6">
         <Button className="w-full h-24 rounded-xl bg-blue-600 hover:bg-blue-700 flex flex-col items-center justify-center text-white">
           <span className="text-3xl font-extrabold">4+</span>
           <span className="text-sm font-medium">Tahun Pengalaman</span>
