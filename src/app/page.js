@@ -1,10 +1,10 @@
-import Hero from "@/components/Hero"
-import Tentang from "@/components/Tentang"
-import Produk from "@/components/Produk";
-import Project from "@/components/Project";
-import Team from "@/components/Team";
-import SubsidiarySection from "@/components/SubsidiarySection";
-import LocationSection from "@/components/LocationSection";
+import Hero from "@/components/section/HeroSection"
+import Tentang from "@/components/section/TentangSection"
+import Produk from "@/components/section/ProdukSection";
+import Project from "@/components/section/ProjectSection";
+import Team from "@/components/section/TeamSection";
+import SubsidiarySection from "@/components/section/SubsidiarySection";
+import LocationSection from "@/components/section/LocationSection";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
     <Tentang />
     <Produk />
     <Project />
-    <Team />
+    {/* <Team /> */}
     <SubsidiarySection />
     <LocationSection />
     </>
