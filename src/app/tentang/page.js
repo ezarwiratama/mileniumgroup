@@ -100,10 +100,10 @@ export default function TentangPage() {
                   Kami melayani pengadaan bibit tanaman unggul, jasa penanaman profesional, hingga pemeliharaan jangka panjang. Dengan kombinasi keahlian teknis dan pendekatan yang ramah lingkungan, kami berkomitmen untuk mendukung terciptanya ekosistem yang produktif dan berkelanjutan bagi mitra bisnis maupun lingkungan sekitar.
                 </p>
               </div>
-              <div className="md:col-span-2 bg-gray-100 h-64 rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-300">
+              <div className="md:col-span-2 bg-gray-100 h-64 rounded-2xl flex items-center justify-center">
                  {/* Placeholder untuk Gambar Profil/Kantor - Gunakan <Image /> seperti manajemen */}
-                 <span className="text-gray-400 text-sm">[ Gambar Profil / Kantor ]</span>
-                 {/* <Image src="/logo.jpg" alt="PT Milenium Jaya Sejati Profil" width={150} height={150} className="object-contain" /> */}
+                 {/* <span className="text-gray-400 text-sm">[ Gambar Profil / Kantor ]</span> */}
+                 <Image src="/subsidiary/logo-mjs.jpg" alt="PT Milenium Jaya Sejati Profil" width={400} height={400} className="object-contain" />
               </div>
             </div>
           )}
@@ -170,8 +170,8 @@ export default function TentangPage() {
                 <div className="max-w-sm bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-4 hover:border-blue-100 transition hover:shadow-2xl">
                     <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center border-4 border-blue-100 overflow-hidden relative">
                         {/* Placeholder atau Gunakan next/image jika ada foto */}
-                        <span className="text-gray-400 text-sm">Foto</span>
-                        {/* <Image src="/path/to/eko-photo.jpg" alt="Eko Mudjiharto, S.T." width={150} height={150} className="object-cover rounded-full" /> */}
+                        {/* <span className="text-gray-400 text-sm">Foto</span> */}
+                        <Image src="/profil-manajemen/eko.jpg" alt="Eko Mudjiharto, S.T." width={150} height={150} className="object-cover rounded-full" />
                     </div>
                     <div className="space-y-1">
                         <h4 className="text-xl font-bold text-gray-950">Eko Mudjiharto, S.T.</h4>
@@ -186,8 +186,8 @@ export default function TentangPage() {
                 <div className="max-w-sm bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-4 hover:border-blue-100 transition hover:shadow-2xl">
                     <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center border-4 border-blue-100 overflow-hidden relative">
                         {/* Placeholder atau Gunakan next/image jika ada foto */}
-                        <span className="text-gray-400 text-sm">Foto</span>
-                        {/* <Image src="/path/to/ezar-photo.jpg" alt="Ezar Hardin Wiratama" width={150} height={150} className="object-cover rounded-full" /> */}
+                        {/* <span className="text-gray-400 text-sm">Foto</span> */}
+                        <Image src="/profil-manajemen/ezar.jpg" alt="Ezar Hardin Wiratama" width={150} height={150} className="object-cover rounded-full" />
                     </div>
                     <div className="space-y-1">
                         <h4 className="text-xl font-bold text-gray-950">Ezar Hardin Wiratama</h4>

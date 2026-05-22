@@ -24,14 +24,14 @@ export default function TimPage() {
 
   // Data Staf Manajemen Inti (sesuai data sebelumnya)
   const pimpinanData = [
-    { name: "Eko Mudjiharto, S.T.", title: "Direktur Utama", roleTag: "Strategic Leader", path: "/path/to/eko-photo.jpg", desc: "Pendiri yang mengarahkan visi strategis, kemitraan B2B, dan memastikan standar operasional tertinggi terpenuhi." },
-    { name: "Ezar Hardin Wiratama", title: "Engineer", roleTag: "Computer Engineer", path: "/path/to/ezar-photo.jpg", desc: "Penanggung jawab infrastruktur Teknologi Informasi, digitalisasi data lahan, dan keamanan sistem perusahaan." },
+    { name: "Eko Mudjiharto, S.T.", title: "Direktur Utama", roleTag: "Strategic Leader", path: "/profil-manajemen/eko.jpg", desc: "Pendiri yang mengarahkan visi strategis, kemitraan B2B, dan memastikan standar operasional tertinggi terpenuhi." },
+    { name: "Ezar Hardin Wiratama", title: "Engineer", roleTag: "Computer Engineer", path: "/profil-manajemen/ezar.jpg", desc: "Penanggung jawab infrastruktur Teknologi Informasi, digitalisasi data lahan, dan keamanan sistem perusahaan." },
   ];
 
   // Data Tenaga Ahli Agroforestri (Placeholder Kredibel)
   const ahliData = [
-    { name: "Dr. Ir. [Nama Ahli Agronomi]", title: "Senior Agronomist", expertise: "Spesialis Nutrisi Tanah & Hortikultura", path: "/path/to/ahli-agronomi.jpg" },
-    { name: "Ir. [Nama Ahli Kehutanan]", title: "Silviculturist Expert", expertise: "Pakar Restorasi Hutan & Pesisir", path: "/path/to/ahli-forestri.jpg" },
+    { name: "Ardi Tri Nugraha, S.E", title: "K3L", expertise: "K3L", path: "/path/to/ahli-agronomi.jpg" },
+    // { name: "Ir. [Nama Ahli Kehutanan]", title: "Silviculturist Expert", expertise: "Pakar Restorasi Hutan & Pesisir", path: "/path/to/ahli-forestri.jpg" },
   ];
 
   return (
@@ -112,8 +112,8 @@ export default function TimPage() {
                 {pimpinanData.map((pimpinan, index) => (
                   <div key={index} className="max-w-sm bg-white p-8 rounded-3xl shadow-xl border border-gray-100 space-y-4 hover:border-sky-100 transition hover:shadow-2xl flex-1 min-w-[280px]">
                       <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center border-4 border-sky-100 overflow-hidden relative">
-                          <span className="text-gray-400 text-sm">Foto</span>
-                          {/* <Image src={pimpinan.path} alt={pimpinan.name} fill className="object-cover rounded-full" /> */}
+                          {/* <span className="text-gray-400 text-sm">Foto</span> */}
+                          <Image src={pimpinan.path} alt={pimpinan.name} fill className="object-cover rounded-full" />
                       </div>
                       <div className="space-y-1.5">
                           <h4 className="text-xl font-bold text-gray-950">{pimpinan.name}</h4>
