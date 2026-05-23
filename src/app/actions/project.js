@@ -80,7 +80,7 @@ export async function saveProject(formData) {
       client,
       location,
       date,
-      img: imageUrl || "/project/placeholder.png",
+      img: imageUrl || "",
       desc,
       specs,
     };

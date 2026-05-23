@@ -138,7 +138,7 @@ export default function ProjectPage() {
                 <div className="md:col-span-4 bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-200 relative min-h-[220px] md:min-h-full overflow-hidden">
                   {project.img ? (
                     <img 
-                      src={project.img} 
+                      src={project.img || "/project/placeholder.png"}
                       alt={project.title} 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                     />
