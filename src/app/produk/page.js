@@ -110,8 +110,8 @@ export default function ProdukPage() {
                   </p>
                 </div>
                 <div className="md:col-span-2 bg-gray-100 h-56 rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-300 relative overflow-hidden">
-                  <span className="text-gray-400 text-sm">[ Gambar Pembibitan / Kebun ]</span>
-                  {/* <Image src="/path/to/pembibitan.jpg" alt="Pembibitan Tanaman" fill className="object-cover" /> */}
+                  {/* <span className="text-gray-400 text-sm">[ Gambar Pembibitan / Kebun ]</span> */}
+                  <Image src="/layanan/pengadaan.jpg" alt="Pembibitan Tanaman" fill className="object-cover" />
                 </div>
               </div>
 
@@ -152,8 +152,8 @@ export default function ProdukPage() {
                   </p>
                 </div>
                 <div className="md:col-span-2 bg-gray-100 h-56 rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-300 relative overflow-hidden">
-                  <span className="text-gray-400 text-sm">[ Gambar Proses Penanaman ]</span>
-                  {/* <Image src="/path/to/penanaman-lapangan.jpg" alt="Proses Penanaman" fill className="object-cover" /> */}
+                  {/* <span className="text-gray-400 text-sm">[ Gambar Proses Penanaman ]</span> */}
+                  <Image src="/layanan/penanaman.jpg" alt="Proses Penanaman" fill className="object-cover" />
                 </div>
               </div>
 
@@ -194,8 +194,8 @@ export default function ProdukPage() {
                   </p>
                 </div>
                 <div className="md:col-span-2 bg-gray-100 h-56 rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-300 relative overflow-hidden">
-                  <span className="text-gray-400 text-sm">[ Gambar Pemeliharaan Lahan ]</span>
-                  {/* <Image src="/path/to/pemeliharaan.jpg" alt="Pemeliharaan Tanaman" fill className="object-cover" /> */}
+                  {/* <span className="text-gray-400 text-sm">[ Gambar Pemeliharaan Lahan ]</span> */}
+                  <Image src="/layanan/pemeliharaan.jpg" alt="Pemeliharaan Tanaman" fill className="object-cover" />
                 </div>
               </div>
 

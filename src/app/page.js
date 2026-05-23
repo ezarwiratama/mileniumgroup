@@ -161,7 +161,15 @@ export default function Home() {
           <span className="bg-sky-100 text-sky-700 px-4 py-1 rounded-full text-sm font-medium">
             Tentang Kami
           </span>
-          <h2 className="text-4xl font-extrabold mt-4 text-sky-800">
+          <Image
+            src="/subsidiary/logo-mjs.jpg"
+            alt="Kegiatan PT. Milenium Jaya Sejati"
+            width={100}
+            height={100}
+            style={{ width: "auto", height: "auto" }}
+            className="object-cover rounded-xl mx-auto mt-4"
+          />
+          <h2 className="text-4xl font-extrabold mt-4 mb-2 text-sky-800">
             PT. Milenium Jaya Sejati
           </h2>
         </div>
@@ -169,9 +177,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6 items-center">
           <div className="relative w-full h-[50px] md:h-[500px]">
             <Image
-              src="/subsidiary/logo-mjs.jpg"
+              src="/bg-hero-2.jpg"
               alt="Kegiatan PT. Milenium Jaya Sejati"
               fill
+              sizes="50vw"
               className="object-cover rounded-xl"
             />
           </div>
@@ -224,7 +233,7 @@ export default function Home() {
 
         <div className="mt-16 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 px-6">
           <Button className="w-full h-24 rounded-xl bg-sky-600 hover:bg-sky-700 flex flex-col items-center justify-center text-white">
-            <span className="text-3xl font-extrabold">4+</span>
+            <span className="text-3xl font-extrabold">20+</span>
             <span className="text-sm font-medium">Tahun Pengalaman</span>
           </Button>
           <Button className="w-full h-24 rounded-xl bg-sky-600 hover:bg-sky-700 flex flex-col items-center justify-center text-white">
@@ -266,6 +275,7 @@ export default function Home() {
                   src={item.img}
                   alt={item.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-110" // Efek zoom saat hover card
                 />
               </div>
@@ -351,6 +361,7 @@ export default function Home() {
                   src={item.img}
                   alt={item.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
