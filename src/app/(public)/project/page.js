@@ -1,6 +1,7 @@
+// src/app/project/page.js (Sesuaikan dengan path file Anda)
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Breadcrumb,
@@ -10,11 +11,13 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Trees, Sprout, Building2, MapPin, Calendar, CheckCircle2 } from "lucide-react";
+import { Trees, Sprout, Building2, MapPin, Calendar, CheckCircle2, Loader2, ImageIcon } from "lucide-react";
+import { fetchProjects } from "@/app/actions/project"; // Sesuaikan path relative ke action Anda
 
 export default function ProjectPage() {
-  // Tabs pembagian sektor proyek lapangan
   const [activeTab, setActiveTab] = useState("kehutanan");
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const tabs = [
     { key: "kehutanan", label: "Kehutanan & Reboisasi" },
@@ -22,54 +25,31 @@ export default function ProjectPage() {
     { key: "lanskap", label: "Lanskap & Penghijauan" },
   ];
 
-  // Data Rekam Jejak Proyek Lapangan
-  const projectsData = {
-    kehutanan: [
-      {
-        title: "Restorasi Ekosistem Mangrove & Abrasi Pesisir",
-        client: "Dinas Lingkungan Hidup / Mitra Swasta",
-        location: "Kawasan Pesisir, Cilacap",
-        date: "Oktober 2024 - Februari 2025",
-        desc: "Penanaman massal lebih dari 50.000 bibit Mangrove (Bakau) tangguh untuk menahan laju abrasi pantai, mengembalikan ekosistem perairan pesisir, dan membangun benteng hijau alami.",
-        specs: ["Pengadaan bibit bersertifikat", "Metode penanaman padat cerucuk", "Monitoring kelulusan hidup tanaman 12 bulan"]
-      },
-      {
-        title: "Reboisasi Lahan Kritis & Sabuk Hijau Hutan",
-        client: "Kementerian Kehutanan / Kontraktor Utama",
-        location: "Kawasan Hutan Lindung, Jawa Tengah",
-        date: "Maret 2025",
-        desc: "Proyek pemulihan vegetasi lahan kritis akibat deforestasi menggunakan kombinasi pohon peneduh keras dan Cemara Laut guna memperkokoh struktur tanah dan mencegah erosi makro.",
-        specs: ["Rehabilitasi kontur tanah pratanam", "Penanaman vegetasi penutup", "Sistem manajemen pemupukan hara berkelanjutan"]
+  // Mengambil data real dari Supabase
+  useEffect(() => {
+    const loadProjects = async () => {
+      setIsLoading(true);
+      const result = await fetchProjects();
+      if (result.success) {
+        setProjects(result.data);
+      } else {
+        console.error("Gagal memuat data dari database:", result.error);
       }
-    ],
-    perkebunan: [
-      {
-        title: "Pengadaan & Penanaman Bibit Komoditas Massal",
-        client: "Kemitraan Kelompok Tani / Korporasi Agro",
-        location: "Area Perkebunan, Jawa Tengah",
-        date: "Agustus 2025",
-        desc: "Penyediaan dan penanaman bibit unggul komoditas perkebunan dalam skala besar. Fokus pada efisiensi tata letak akar hara agar tanaman siap beradaptasi dengan iklim tropis yang dinamis.",
-        specs: ["Penyediaan 20.000+ bibit unggul", "Pengkondisian pH tanah makro", "Instalasi jalur perawatan vegetasi awal"]
-      }
-    ],
-    lanskap: [
-      {
-        title: "Penataan Sabuk Hijau (Green Belt) Kawasan Industri",
-        client: "PT Mitra Industri Utama",
-        location: "Kawasan Industri, Cilacap",
-        date: "Januari 2026",
-        desc: "Perancangan dan penanaman koridor hijau fungsional di sekeliling kawasan industri menggunakan Pohon Palem dan Ekor Tupai untuk mereduksi polusi udara sekaligus meningkatkan estetika visual kawasan.",
-        specs: ["Penataan lanskap arsitektural", "Pengadaan pohon peneduh dewasa", "Sistem drainase akar perimeter otomatis"]
-      },
-      {
-        title: "Pengembangan Lanskap Asri Residensial Modern",
-        client: "Developer Perumahan Mandiri",
-        location: "Kompleks Residensial, Purwokerto",
-        date: "Maret 2026",
-        desc: "Pekerjaan penataan taman komunal, median jalan utama perumahan, dan area hijau publik untuk mewujudkan konsep hunian bernuansa alam yang modern, teduh, dan tertata rapi.",
-        specs: ["Sistem penanaman instan (pohon jadi)", "Pemetaan estetika tata ruang hijau", "Kontrak pemeliharaan estetika berkala"]
-      }
-    ]
+      setIsLoading(false);
+    };
+
+    loadProjects();
+  }, []);
+
+  // Filter data berdasarkan tab yang aktif
+  const filteredProjects = projects.filter((p) => p.category === activeTab);
+
+  // Format tanggal agar tampil rapi di sisi pengunjung
+  const formatIndonesianDate = (dateString) => {
+    if (!dateString) return "-";
+    const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const [year, month, day] = dateString.split("-");
+    return `${parseInt(day)} ${months[parseInt(month) - 1]} ${year}`;
   };
 
   return (
@@ -110,15 +90,15 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* Tabs Section - Menggunakan gaya kapsul mengambang yang matching */}
+      {/* Tabs Section */}
       <section className="-mt-10 relative z-20 sticky top-20">
         <div className="container mx-auto px-4">
-          <div className="bg-white p-2 flex flex-row gap-2 justify-center rounded-full max-w-2xl mx-auto shadow-xl border border-gray-100">
+          <div className="bg-white p-2 flex flex-row gap-2 justify-center rounded-full max-w-2xl mx-auto shadow-xl border border-gray-100 overflow-x-auto hide-scrollbar">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`px-4 py-3 rounded-full text-xs md:text-sm lg:text-base font-semibold transition-all duration-300 flex-1 text-center ${
+                className={`px-4 py-3 rounded-full text-xs md:text-sm lg:text-base font-semibold transition-all duration-300 whitespace-nowrap flex-1 text-center ${
                   activeTab === tab.key
                     ? "bg-sky-800 text-white shadow-md"
                     : "text-gray-600 hover:bg-sky-100 hover:text-sky-800"
@@ -135,71 +115,88 @@ export default function ProjectPage() {
       <section className="py-16 md:py-24 container mx-auto px-6">
         <div className="max-w-5xl mx-auto space-y-10">
           
-          {/* Loop data project berdasarkan tab yang aktif */}
-          {projectsData[activeTab]?.map((project, index) => (
-            <div 
-              key={index} 
-              className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-10 grid md:grid-cols-12 gap-8 items-stretch hover:shadow-xl transition-all duration-300"
-            >
-              {/* Sisi Kiri: Gambar Proyek Lapangan */}
-              <div className="md:col-span-4 bg-gray-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-gray-200 relative min-h-[220px] md:min-h-full overflow-hidden">
-                <span className="text-gray-400 text-xs md:text-sm text-center px-4">[ Foto Dokumentasi Kerja Langan ]</span>
-                {/* <Image src={`/project-${activeTab}-${index}.jpg`} alt={project.title} fill className="object-cover" /> */}
-              </div>
-
-              {/* Sisi Kanan: Detail Informasi Proyek */}
-              <div className="md:col-span-8 flex flex-col justify-between space-y-6">
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 font-medium">
-                      <div className="flex items-center gap-1">
-                        <MapPin size={14} className="text-sky-800" />
-                        <span>{project.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar size={14} className="text-sky-800" />
-                        <span>{project.date}</span>
-                      </div>
+          {isLoading ? (
+            // Indikator Loading
+            <div className="flex flex-col items-center justify-center py-20 bg-white border border-gray-100 rounded-3xl shadow-sm space-y-4">
+              <Loader2 className="animate-spin text-sky-800" size={40} />
+              <p className="text-gray-500 font-medium">Memuat data proyek...</p>
+            </div>
+          ) : filteredProjects.length === 0 ? (
+            // Fallback jika belum ada data proyek pada kategori tersebut
+            <div className="bg-white text-center p-16 rounded-3xl shadow-md border border-gray-100 text-gray-500 flex flex-col items-center gap-3">
+              <Sprout size={48} className="text-gray-300" />
+              <p>Belum ada portofolio proyek terdaftar untuk kategori ini.</p>
+            </div>
+          ) : (
+            // Loop data project dari database
+            filteredProjects.map((project) => (
+              <div 
+                key={project.id} 
+                className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-10 grid md:grid-cols-12 gap-8 items-stretch hover:shadow-xl transition-all duration-300 group"
+              >
+                {/* Sisi Kiri: Gambar Proyek Lapangan */}
+                <div className="md:col-span-4 bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-200 relative min-h-[220px] md:min-h-full overflow-hidden">
+                  {project.img ? (
+                    <img 
+                      src={project.img} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-gray-400">
+                      <ImageIcon size={32} />
+                      <span className="text-xs text-center px-4">Tanpa Dokumentasi Foto</span>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 tracking-tight leading-tight">
-                      {project.title}
-                    </h2>
-                    <p className="text-xs font-semibold text-sky-800 tracking-wide uppercase">
-                      Mitra/Klien: {project.client}
+                  )}
+                </div>
+
+                {/* Sisi Kanan: Detail Informasi Proyek */}
+                <div className="md:col-span-8 flex flex-col justify-between space-y-6">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 font-medium">
+                        <div className="flex items-center gap-1.5">
+                          <MapPin size={14} className="text-sky-800" />
+                          <span>{project.location}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Calendar size={14} className="text-sky-800" />
+                          <span>{formatIndonesianDate(project.date)}</span>
+                        </div>
+                      </div>
+                      <h2 className="text-2xl font-bold text-gray-900 tracking-tight leading-tight group-hover:text-sky-800 transition-colors">
+                        {project.title}
+                      </h2>
+                      <p className="text-xs font-semibold text-sky-800 tracking-wide uppercase">
+                        Mitra/Klien: {project.client}
+                      </p>
+                    </div>
+
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                      {project.desc}
                     </p>
                   </div>
 
-                  <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                    {project.desc}
-                  </p>
-                </div>
-
-                {/* Spesifikasi teknis pekerjaan */}
-                <div className="pt-4 border-t border-gray-100">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
-                    Cakupan Penanganan Teknis:
-                  </h4>
-                  <div className="grid sm:grid-cols-2 gap-2">
-                    {project.specs.map((spec, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                        <CheckCircle2 size={16} className="text-green-600 flex-shrink-0" />
-                        <span>{spec}</span>
+                  {/* Spesifikasi teknis pekerjaan */}
+                  {project.specs && project.specs.length > 0 && (
+                    <div className="pt-4 border-t border-gray-100">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+                        Cakupan Penanganan Teknis:
+                      </h4>
+                      <div className="grid sm:grid-cols-2 gap-2">
+                        {project.specs.map((spec, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                            <CheckCircle2 size={16} className="text-green-600 flex-shrink-0" />
+                            <span>{spec}</span>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  )}
                 </div>
-
               </div>
-            </div>
-          ))}
-
-          {/* Fallback jika belum ada data proyek pada kategori tersebut */}
-          {projectsData[activeTab]?.length === 0 && (
-            <div className="bg-white text-center p-12 rounded-3xl shadow-md border border-gray-100 text-gray-500">
-              Belum ada portofolio proyek terdaftar untuk kategori ini.
-            </div>
+            ))
           )}
-
         </div>
       </section>
     </main>
