@@ -258,7 +258,7 @@ export default function Home() {
           </h2>
           <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
             Kami menyediakan berbagai jenis tanaman unggulan yang digunakan
-            untuk ghijauan, konservasi lingkungan, serta kebutuhan lanskap.
+            untuk penghijauan, konservasi lingkungan, serta kebutuhan lanskap.
           </p>
         </div>
 

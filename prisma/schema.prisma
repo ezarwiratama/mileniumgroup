@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+// Menggunakan provider bawaan agar otomatis terkompilasi menjadi JavaScript di node_modules
+provider = "prisma-client-js"
+}
+
+datasource db {
+provider = "postgresql"
+// url & directUrl tidak perlu diisi di sini karena sudah dipindahkan ke prisma.config.ts
+}
+
+// Model Tabel Proyek Lapangan PT Milenium Jaya Sejati
+model Project {
+id        String   @id @default(cuid())
+category  String   // "kehutanan" | "perkebunan" | "lanskap"
+title     String
+client    String
+location  String
+date      String   // Menyimpan format YYYY-MM-DD
+img       String   // Menyimpan URL Gambar publik dari Supabase Storage
+desc      String   @db.Text
+specs     String[] // Menyimpan array spesifikasi secara native di PostgreSQL
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+}

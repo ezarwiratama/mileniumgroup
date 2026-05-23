@@ -53,7 +53,9 @@ export default function Footer() {
               <span>0813-9169-3209</span>
             </li>
             <li className="flex items-center space-x-2">
-              <User size={16} />
+              <Link href="/login" className="hover:text-gray-200">
+                <User size={16} />
+              </Link>
               <span>Eko Mudjiharto</span>
             </li>
             <li>

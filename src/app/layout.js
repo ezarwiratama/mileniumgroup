@@ -1,7 +1,5 @@
 import { Mulish } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -18,12 +16,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={mulish.className}
-      >
-        <Navbar />
+      <body className={mulish.className}>
         {children}
-        <Footer />
       </body>
     </html>
   );
